@@ -6,31 +6,39 @@ public class PlayerMovement : MonoBehaviour
 {
     private Animator _playerAnimator;
     private Rigidbody _playerRigidbody;
+
+    //private IWeapon _curWeapon;
+
     void Awake()
     {
         _playerAnimator = GetComponent<Animator>();
         _playerRigidbody = GetComponent<Rigidbody>();
+        //_curWeapon = GetComponent<IWeapon>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis(PlayerAnimParameter.HORIZONTAL) == -1)
-        {
-            _playerRigidbody.position = new Vector3(-23, 0, 3.3f);
-        }
-        else if (Input.GetAxis(PlayerAnimParameter.HORIZONTAL) == 1)
-        {
-            _playerRigidbody.position = new Vector3(-23, 0, -3.3f);
-        }
-        else
-        {
-            _playerRigidbody.position = new Vector3(-23, 0, 0);
-        }
+    }
 
-        if (Input.GetMouseButtonDown(0))
+    public void PlayerAttack()
+    {
+        _playerAnimator.SetTrigger(AnimParameter.ATTACK);
+        //_curWeapon.Attack();
+    }
+
+    public void SetPlayerPosition(string tag)
+    {
+        switch (tag)
         {
-            _playerAnimator.SetTrigger(PlayerAnimParameter.ATTACK);
+            case "LeftButton":
+                _playerRigidbody.position = Field.PlayerLeftPosition;
+                break;
+            case "RightButton":
+                _playerRigidbody.position = Field.PlayerRightPosition;
+                break;
+            case "MiddleButton":
+                _playerRigidbody.position = Field.PlayerMiddlePosition;
+                break;
         }
     }
 }

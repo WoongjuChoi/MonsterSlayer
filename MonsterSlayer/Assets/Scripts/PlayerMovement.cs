@@ -7,13 +7,13 @@ public class PlayerMovement : MonoBehaviour
     private Animator _playerAnimator;
     private Rigidbody _playerRigidbody;
 
-    //private IWeapon _curWeapon;
+    private IWeapon _curWeapon;
 
     void Awake()
     {
         _playerAnimator = GetComponent<Animator>();
         _playerRigidbody = GetComponent<Rigidbody>();
-        //_curWeapon = GetComponent<IWeapon>();
+        _curWeapon = GetComponentInChildren<IWeapon>();
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerAttack()
     {
         _playerAnimator.SetTrigger(AnimParameter.ATTACK);
-        //_curWeapon.Attack();
+        StartCoroutine(_curWeapon.Attack());
     }
 
     public void SetPlayerPosition(string tag)

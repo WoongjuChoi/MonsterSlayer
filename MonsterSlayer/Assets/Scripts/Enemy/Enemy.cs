@@ -19,6 +19,11 @@ public abstract class Enemy : MonoBehaviour
     {
         if (false == IsDead)
         {
+            if (GameManager.instance.IsGameOver)
+            {
+                StartCoroutine(EnemyWin());
+            }
+
             EnemyMove();
         }
     }
@@ -31,12 +36,12 @@ public abstract class Enemy : MonoBehaviour
         }
         else if (other.tag == TagNames.DEADZONE && IsDead == false)
         {
-            EnemyWin();
+            StartCoroutine(EnemyWin());
         }
     }
     public abstract void EnemyMove();
     public abstract void EnemyDie();
-    public abstract void EnemyWin();
+    public abstract IEnumerator EnemyWin();
 
     public IEnumerator DestroyEnemy()
     {

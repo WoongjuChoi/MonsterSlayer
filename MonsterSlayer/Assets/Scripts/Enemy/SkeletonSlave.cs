@@ -18,11 +18,14 @@ public class SkeletonSlave : Enemy
         StartCoroutine(DestroyEnemy());
     }
 
-    public override void EnemyWin()
+    public override IEnumerator EnemyWin()
     {
         IsDead = true;
         GameManager.instance.TakeDamage();
         EnemyAnimator.SetTrigger(AnimParameter.WIN);
-        StartCoroutine(DestroyEnemy());
+
+        yield return new WaitForSeconds(3f);
+
+        Destroy(gameObject);
     }
 }

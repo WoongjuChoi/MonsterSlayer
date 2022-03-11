@@ -17,13 +17,16 @@ public class UserInput : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && IsButtonClicked())
+        if (false == GameManager.instance.IsGameOver)
         {
-            _target.OnButtonDown();
-        }
-        else if (Input.GetMouseButtonUp(0) && _target != null)
-        {
-            _target.OnButtonUp();
+            if (Input.GetMouseButtonDown(0) && IsButtonClicked())
+            {
+                _target.OnButtonDown();
+            }
+            else if (Input.GetMouseButtonUp(0) && _target != null)
+            {
+                _target.OnButtonUp();
+            }
         }
     }
 

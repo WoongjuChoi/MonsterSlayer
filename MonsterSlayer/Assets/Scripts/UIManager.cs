@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
         _scoreText.text = "Score : " + score;
     }
 
-    public void SetGameOverUI(bool active)
+    public void ActiveGameOverUI(bool active)
     {
         _gameOverUI.SetActive(active);
     }

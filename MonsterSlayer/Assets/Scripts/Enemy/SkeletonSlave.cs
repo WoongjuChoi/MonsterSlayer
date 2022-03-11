@@ -13,7 +13,16 @@ public class SkeletonSlave : Enemy
     public override void EnemyDie()
     {
         IsDead = true;
+        GameManager.instance.AddScore(EnemyType.SkeletonSlave);
         EnemyAnimator.SetTrigger(AnimParameter.DIE);
+        StartCoroutine(DestroyEnemy());
+    }
+
+    public override void EnemyWin()
+    {
+        IsDead = true;
+        GameManager.instance.TakeDamage();
+        EnemyAnimator.SetTrigger(AnimParameter.WIN);
         StartCoroutine(DestroyEnemy());
     }
 }

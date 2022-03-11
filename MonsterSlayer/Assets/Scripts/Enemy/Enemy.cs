@@ -25,14 +25,18 @@ public abstract class Enemy : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapon" && IsDead == false)
+        if (other.tag == TagNames.WEAPON && IsDead == false)
         {
             EnemyDie();
         }
+        else if (other.tag == TagNames.DEADZONE && IsDead == false)
+        {
+            EnemyWin();
+        }
     }
     public abstract void EnemyMove();
-
     public abstract void EnemyDie();
+    public abstract void EnemyWin();
 
     public IEnumerator DestroyEnemy()
     {

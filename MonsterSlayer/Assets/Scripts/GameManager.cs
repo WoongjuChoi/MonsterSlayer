@@ -21,4 +21,43 @@ public class GameManager : MonoBehaviour
 
     private int _score = 0;
     private int _hp = 3;
+
+    public bool IsGameOver { get; private set; }
+
+    public void AddScore(EnemyType type)
+    {
+        if (false == IsGameOver)
+        {
+            switch (type)
+            {
+                case EnemyType.SkeletonSlave:
+                    _score += 100;
+                    break;
+            }
+
+            UIManager.instance.SetScoreText(_score);
+        }
+    }
+
+    public void TakeDamage()
+    {
+        if (false == IsGameOver)
+        {
+            --_hp;
+
+            UIManager.instance.SetHPText(_hp);
+
+            if (_hp <= 0)
+            {
+                _hp = 0;
+                GameOver();
+            }
+        }
+    }
+
+    public void GameOver()
+    {
+        IsGameOver = true;
+        UIManager.instance.ActiveGameOverUI(true);
+    }
 }

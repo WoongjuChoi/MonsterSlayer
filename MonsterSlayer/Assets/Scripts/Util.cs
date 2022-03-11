@@ -12,3 +12,8 @@ class TagNames
 {
     public const string PLAYER = "Player";
 }
+
+public enum EnemyType
+{
+    SkeletonSlave = 0
+}

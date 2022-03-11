@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkelelonSlave : Enemy
+public class SkeletonSlave : Enemy
 {
     public override void EnemyMove()
     {

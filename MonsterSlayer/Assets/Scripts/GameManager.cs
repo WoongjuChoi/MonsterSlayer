@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     private int _score = 0;
+
+    [SerializeField]
     private int _hp = 3;
 
     public bool IsGameOver { get; private set; }

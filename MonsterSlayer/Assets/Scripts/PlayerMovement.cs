@@ -8,9 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _playerRigidbody;
 
     private IWeapon _curWeapon;
+    private bool _isDead;
 
     void Awake()
     {
+        _isDead = false;
         _playerAnimator = GetComponent<Animator>();
         _playerRigidbody = GetComponent<Rigidbody>();
         _curWeapon = GetComponentInChildren<IWeapon>();
@@ -18,12 +20,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (false == _isDead && GameManager.instance.IsGameOver)
+        {
+            PlayerDie();
+        }
     }
 
     public void PlayerAttack()
     {
         _playerAnimator.SetTrigger(AnimParameter.ATTACK);
         StartCoroutine(_curWeapon.Attack());
+    }
+
+    public void PlayerDie()
+    {
+        _isDead = true;
+        _playerAnimator.SetTrigger(AnimParameter.DIE);
     }
 
     public void SetPlayerPosition(string tag)

@@ -21,7 +21,7 @@ public class UserInput : MonoBehaviour
         {
             _target.OnButtonDown();
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) && _target != null)
         {
             _target.OnButtonUp();
         }
@@ -34,7 +34,7 @@ public class UserInput : MonoBehaviour
             Ray ray = _mainCam.ScreenPointToRay(Input.mousePosition);
             RaycastHit _hit;
 
-            if (Physics.Raycast(ray.origin, ray.direction * 10/* 불-편 */, out _hit))
+            if (Physics.Raycast(ray.origin, ray.direction * 10, out _hit))
             {
                 _target = _hit.collider.gameObject.GetComponent<Button>();
                 if (_target != null)

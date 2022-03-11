@@ -2,50 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    private Rigidbody _enemyRigidbody;
-    private Animator _enemyAnimator;
-    private bool _isDead;
-
-    [SerializeField]
-    private float _enemySpeed = 2f;
+    public Rigidbody EnemyRigidbody;
+    public Animator EnemyAnimator;
+    public bool IsDead;
+    public float EnemySpeed = 2f;
     void Awake()
     {
-        _enemyRigidbody = GetComponent<Rigidbody>();
-        _enemyAnimator = GetComponent<Animator>();
-        _isDead = false;
+        EnemyRigidbody = GetComponent<Rigidbody>();
+        EnemyAnimator = GetComponent<Animator>();
+        IsDead = false;
     }
 
     void Update()
     {
-        if (false == _isDead)
+        if (false == IsDead)
         {
-            enemyMove();
+            EnemyMove();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapon" && _isDead == false)
+        if (other.tag == "Weapon" && IsDead == false)
         {
-            enemyDie();
+            EnemyDie();
         }
     }
-    private void enemyMove()
-    {
-        Vector3 moveVec = new Vector3(-_enemySpeed * Time.deltaTime, 0, 0);
-        _enemyRigidbody.MovePosition(_enemyRigidbody.position + moveVec);
-    }
+    public abstract void EnemyMove();
 
-    public void enemyDie()
-    {
-        _isDead = true;
-        _enemyAnimator.SetTrigger(AnimParameter.DIE);
-        StartCoroutine(DestroyEnemy());
-    }
+    public abstract void EnemyDie();
 
-    IEnumerator DestroyEnemy()
+    public IEnumerator DestroyEnemy()
     {
         yield return new WaitForSeconds(3f);
 

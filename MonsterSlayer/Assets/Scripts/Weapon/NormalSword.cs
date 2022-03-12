@@ -16,11 +16,15 @@ public class NormalSword : MonoBehaviour, IWeapon
     {
 
     }
-    public IEnumerator Attack()
+
+    public IEnumerator Attack(Animator playerAnimator)
     {
         _hitbox.enabled = true;
 
-        yield return new WaitForSeconds(0.3f);
+        while (false == playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(AnimParameter.ATTACK))
+        {
+            yield return null;
+        }
 
         _hitbox.enabled = false;
     }

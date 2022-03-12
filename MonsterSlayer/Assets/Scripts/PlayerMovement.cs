@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerAttack()
     {
         _playerAnimator.SetTrigger(AnimParameter.ATTACK);
-        StartCoroutine(_curWeapon.Attack());
+        StartCoroutine(_curWeapon.Attack(_playerAnimator));
     }
 
     public void PlayerDie()

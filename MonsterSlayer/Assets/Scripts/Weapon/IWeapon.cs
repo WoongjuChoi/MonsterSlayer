@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    IEnumerator Attack();
+    IEnumerator Attack(Animator playerAnimator);
 }

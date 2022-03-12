@@ -26,6 +26,9 @@ public class SkeletonSlave : Enemy
 
         yield return new WaitForSeconds(3f);
 
-        Destroy(gameObject);
+        if (false == GameManager.instance.IsGameOver)
+        {
+            Destroy(gameObject);
+        }
     }
 }

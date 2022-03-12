@@ -7,6 +7,7 @@ class AnimParameter
     public const string HORIZONTAL = "Horizontal";
     public const string DIE = "Die";
     public const string WIN = "Win";
+    public const string SKILL = "Skill";
 }
 
 class TagNames

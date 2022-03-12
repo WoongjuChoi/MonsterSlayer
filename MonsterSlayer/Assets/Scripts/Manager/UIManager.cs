@@ -27,6 +27,9 @@ public class UIManager : MonoBehaviour
     private Text _scoreText;
 
     [SerializeField]
+    private GameObject _skillButtonObject;
+
+    [SerializeField]
     private GameObject _gameOverUI;
 
     public void SetHPText(int hp)
@@ -37,6 +40,11 @@ public class UIManager : MonoBehaviour
     public void SetScoreText(int score)
     {
         _scoreText.text = "Score : " + score;
+    }
+
+    public void ActiveSkillButton(bool active)
+    {
+        _skillButtonObject.SetActive(active);
     }
 
     public void ActiveGameOverUI(bool active)

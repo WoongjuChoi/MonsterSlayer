@@ -20,9 +20,13 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     private int _score = 0;
+    private int _skillgauge = 0;
 
     [SerializeField]
     private int _hp = 3;
+
+    [SerializeField]
+    private int _skillgaugeCapacity = 100;
 
     public bool IsGameOver { get; private set; }
 
@@ -34,10 +38,17 @@ public class GameManager : MonoBehaviour
             {
                 case EnemyType.SkeletonSlave:
                     _score += 100;
+                    _skillgauge += 10;
                     break;
             }
 
             UIManager.instance.SetScoreText(_score);
+
+            if (_skillgauge >= _skillgaugeCapacity)
+            {
+                _skillgauge -= _skillgaugeCapacity;
+                UIManager.instance.ActiveSkillButton(true);
+            }
         }
     }
 

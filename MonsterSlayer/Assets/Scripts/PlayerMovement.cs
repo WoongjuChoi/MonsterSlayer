@@ -38,6 +38,12 @@ public class PlayerMovement : MonoBehaviour
         _playerAnimator.SetTrigger(AnimParameter.DIE);
     }
 
+    public void PlayerSkill()
+    {
+        _playerAnimator.SetTrigger(AnimParameter.SKILL);
+        UIManager.instance.ActiveSkillButton(false);
+    }
+
     public void SetPlayerPosition(string tag)
     {
         switch (tag)

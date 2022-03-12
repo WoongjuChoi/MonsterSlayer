@@ -24,7 +24,15 @@ public abstract class Enemy : MonoBehaviour
                 StartCoroutine(EnemyWin());
             }
 
-            EnemyMove();
+            if (GameManager.instance.IsSkillActive)
+            {
+                EnemyAnimator.enabled = false;
+            }
+            else
+            {
+                EnemyAnimator.enabled = true;
+                EnemyMove();
+            }
         }
     }
 

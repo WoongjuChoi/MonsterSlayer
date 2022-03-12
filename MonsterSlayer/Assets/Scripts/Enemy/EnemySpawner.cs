@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     {
         _afterSpawnTime += Time.deltaTime;
 
-        if (false == GameManager.instance.IsGameOver && _afterSpawnTime >= _spawnRate)
+        if (false == GameManager.instance.IsSkillActive && false == GameManager.instance.IsGameOver && _afterSpawnTime >= _spawnRate)
         {
             _afterSpawnTime = 0f;
 

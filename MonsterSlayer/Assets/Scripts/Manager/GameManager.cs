@@ -29,7 +29,13 @@ public class GameManager : MonoBehaviour
     private float _skillgaugeCapacity = 100f;
 
     public bool IsGameOver { get; private set; }
-    public bool IsSkillActive { get; private set; }
+    public bool IsSkillActive { get; set; }
+
+    private void Awake()
+    {
+        IsSkillActive = false;
+        IsGameOver = false;
+    }
 
     public void AddScore(EnemyType type)
     {

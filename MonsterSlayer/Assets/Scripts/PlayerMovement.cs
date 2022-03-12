@@ -37,12 +37,35 @@ public class PlayerMovement : MonoBehaviour
         _isDead = true;
         _playerAnimator.SetTrigger(AnimParameter.DIE);
     }
+    public void SkillActive()
+    {
+        StartCoroutine(PlayerSkill());
+    }
 
-    public void PlayerSkill()
+    public IEnumerator PlayerSkill()
     {
         _playerAnimator.SetTrigger(AnimParameter.SKILL);
         UIManager.instance.ActiveSkillButton(false);
         GameManager.instance.SetSkillGauge(0f);
+        GameManager.instance.IsSkillActive = true;
+
+        yield return null;
+
+        while (true == _playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(AnimParameter.SKILL))
+        {
+            yield return null;
+        }
+
+        if (_playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.5f)
+        {
+            yield return null;
+        }
+        else if (_playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        {
+            yield return null;
+        }
+
+        GameManager.instance.IsSkillActive = false;
     }
 
     public void SetPlayerPosition(string tag)

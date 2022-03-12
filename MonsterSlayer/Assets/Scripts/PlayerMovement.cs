@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerAnimator.SetTrigger(AnimParameter.SKILL);
         UIManager.instance.ActiveSkillButton(false);
+        GameManager.instance.SetSkillGauge(0f);
     }
 
     public void SetPlayerPosition(string tag)

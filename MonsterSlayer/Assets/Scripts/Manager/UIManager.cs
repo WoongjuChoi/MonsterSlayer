@@ -27,6 +27,12 @@ public class UIManager : MonoBehaviour
     private Text _scoreText;
 
     [SerializeField]
+    private Image _skillGauge;
+
+    [SerializeField]
+    private GameObject _skillGaugeTextObject;
+
+    [SerializeField]
     private GameObject _skillButtonObject;
 
     [SerializeField]
@@ -40,6 +46,20 @@ public class UIManager : MonoBehaviour
     public void SetScoreText(int score)
     {
         _scoreText.text = "Score : " + score;
+    }
+
+    public void SetSkillGauge(float gauge, float capacity)
+    {
+        _skillGauge.fillAmount = gauge / capacity;
+
+        if ( gauge >= capacity)
+        {
+            _skillGaugeTextObject.SetActive(true);
+        }
+        else
+        {
+            _skillGaugeTextObject.SetActive(false);
+        }
     }
 
     public void ActiveSkillButton(bool active)

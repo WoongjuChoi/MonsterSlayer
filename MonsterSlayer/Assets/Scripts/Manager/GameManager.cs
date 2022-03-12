@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
     private int _score = 0;
-    private int _skillgauge = 0;
+    private float _skillGauge = 0;
 
     [SerializeField]
     private int _hp = 3;
 
     [SerializeField]
-    private int _skillgaugeCapacity = 100;
+    private float _skillgaugeCapacity = 100f;
 
     public bool IsGameOver { get; private set; }
 
@@ -38,18 +38,25 @@ public class GameManager : MonoBehaviour
             {
                 case EnemyType.SkeletonSlave:
                     _score += 100;
-                    _skillgauge += 10;
+                    _skillGauge += 10;
                     break;
             }
 
             UIManager.instance.SetScoreText(_score);
+            UIManager.instance.SetSkillGauge(_skillGauge, _skillgaugeCapacity);
 
-            if (_skillgauge >= _skillgaugeCapacity)
+            if (_skillGauge >= _skillgaugeCapacity)
             {
-                _skillgauge -= _skillgaugeCapacity;
+                _skillGauge = _skillgaugeCapacity;
                 UIManager.instance.ActiveSkillButton(true);
             }
         }
+    }
+
+    public void SetSkillGauge(float gauge)
+    {
+        _skillGauge = gauge;
+        UIManager.instance.SetSkillGauge(_skillGauge, _skillgaugeCapacity);
     }
 
     public void TakeDamage()

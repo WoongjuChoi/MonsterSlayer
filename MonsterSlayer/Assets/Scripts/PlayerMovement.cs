@@ -7,6 +7,12 @@ public class PlayerMovement : MonoBehaviour
     private Animator _playerAnimator;
     private Rigidbody _playerRigidbody;
 
+    [SerializeField]
+    private GameObject _fireEffect1;
+
+    [SerializeField]
+    private GameObject _fireEffect2;
+
     private IWeapon _curWeapon;
     private bool _isDead;
 
@@ -53,18 +59,20 @@ public class PlayerMovement : MonoBehaviour
 
         while (true == _playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(AnimParameter.SKILL))
         {
-            yield return null;
+            if (_playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.5f)
+            {
+                _fireEffect1.SetActive(true);
+                yield return null;
+            }
+            else if (_playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            {
+                _fireEffect1.SetActive(false);
+                _fireEffect2.SetActive(true);
+                yield return null;
+            }
         }
 
-        if (_playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.5f)
-        {
-            yield return null;
-        }
-        else if (_playerAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-        {
-            yield return null;
-        }
-
+        _fireEffect2.SetActive(false);
         GameManager.instance.IsSkillActive = false;
     }
 

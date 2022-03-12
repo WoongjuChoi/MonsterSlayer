@@ -14,6 +14,7 @@ public class SkeletonSlave : Enemy
     {
         IsDead = true;
         GameManager.instance.AddScore(EnemyType.SkeletonSlave);
+        EnemyAnimator.enabled = true;
         EnemyAnimator.SetTrigger(AnimParameter.DIE);
         StartCoroutine(DestroyEnemy());
     }

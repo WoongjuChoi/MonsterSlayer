@@ -29,7 +29,14 @@ public class SkeletonSlave : Enemy
 
         if (false == GameManager.instance.IsGameOver)
         {
-            Destroy(gameObject);
+            ObjectPool.ReturnSkeletonSlave(this);
         }
+    }
+
+    public override IEnumerator DestroyEnemy()
+    {
+        yield return new WaitForSeconds(3f);
+
+        ObjectPool.ReturnSkeletonSlave(this);
     }
 }

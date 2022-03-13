@@ -19,5 +19,5 @@ class TagNames
 
 public enum EnemyType
 {
-    SkeletonSlave = 0
+    SkeletonSlave = 0,
 }

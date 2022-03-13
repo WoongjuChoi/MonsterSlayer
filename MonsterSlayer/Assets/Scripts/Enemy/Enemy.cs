@@ -50,11 +50,5 @@ public abstract class Enemy : MonoBehaviour
     public abstract void EnemyMove();
     public abstract void EnemyDie();
     public abstract IEnumerator EnemyWin();
-
-    public IEnumerator DestroyEnemy()
-    {
-        yield return new WaitForSeconds(3f);
-
-        Destroy(gameObject);
-    }
+    public abstract IEnumerator DestroyEnemy();
 }

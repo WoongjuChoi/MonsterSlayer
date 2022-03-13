@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _enemyPrefab;
-
     private float _minSpawnRate = 1f;
     private float _maxSpawnRate = 4f;
     private float _spawnRate;
     private float _afterSpawnTime;
 
     private int _enemyPosition;
+    private Enemy _enemyPrefab;
 
     void Start()
     {
@@ -30,21 +28,35 @@ public class EnemySpawner : MonoBehaviour
             _afterSpawnTime = 0f;
 
             _enemyPosition = Random.Range(0, 3);
+            getEnemy();
+            _enemyPrefab.transform.rotation = transform.rotation;
 
-            switch(_enemyPosition)
+            switch (_enemyPosition)
             {
                 case 0:
-                    Instantiate(_enemyPrefab, Field.EnemyLeftPosition, transform.rotation);
+                    _enemyPrefab.transform.position = Field.EnemyLeftPosition;
                     break;
                 case 1:
-                    Instantiate(_enemyPrefab, Field.EnemyMiddlePosition, transform.rotation);
+                    _enemyPrefab.transform.position = Field.EnemyMiddlePosition;
                     break;
                 case 2:
-                    Instantiate(_enemyPrefab, Field.EnemyRightPosition, transform.rotation);
+                    _enemyPrefab.transform.position = Field.EnemyRightPosition;
                     break;
             }
 
             _spawnRate = Random.Range(_minSpawnRate, _maxSpawnRate);
+        }
+    }
+
+    private void getEnemy()
+    {
+        int randomNum = Random.Range(0, 1);
+
+        switch (randomNum)
+        {
+            case (int)EnemyType.SkeletonSlave:
+                _enemyPrefab = ObjectPool.GetSkeletonSlave();
+                break;
         }
     }
 }

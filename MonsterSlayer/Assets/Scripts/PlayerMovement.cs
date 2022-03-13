@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _playerRigidbody;
 
     [SerializeField]
-    private PlayableDirector _playableDirector;
+    private PlayableDirector _SkillCam;
 
     [SerializeField]
     private GameObject _fireEffect1;
@@ -49,8 +49,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void SkillActive()
     {
-        _playableDirector.gameObject.SetActive(true);
-        _playableDirector.Play();
+        _SkillCam.gameObject.SetActive(true);
+        _SkillCam.Play();
         StartCoroutine(PlayerSkill());
     }
 
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         _fireEffect2.SetActive(false);
         GameManager.instance.IsSkillActive = false;
-        _playableDirector.gameObject.SetActive(false);
+        _SkillCam.gameObject.SetActive(false);
     }
 
     public void SetPlayerPosition(string tag)

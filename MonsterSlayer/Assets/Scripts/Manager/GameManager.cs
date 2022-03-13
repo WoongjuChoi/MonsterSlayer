@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private float _skillgaugeCapacity = 100f;
+
+    [SerializeField]
+    private PlayableDirector _dieCam;
 
     public bool IsGameOver { get; private set; }
     public bool IsSkillActive { get; set; }
@@ -86,5 +90,7 @@ public class GameManager : MonoBehaviour
     {
         IsGameOver = true;
         UIManager.instance.ActiveGameOverUI(true);
+        _dieCam.gameObject.SetActive(true);
+        _dieCam.Play();
     }
 }

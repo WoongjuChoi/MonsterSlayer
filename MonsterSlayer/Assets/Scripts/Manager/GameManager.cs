@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         IsGameOver = true;
         UIManager.instance.ActiveGameOverUI(true);
+        UIManager.instance.ActiveSkillButton(false);
         _dieCam.gameObject.SetActive(true);
         _dieCam.Play();
     }

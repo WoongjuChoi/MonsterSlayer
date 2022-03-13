@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Animator _playerAnimator;
     private Rigidbody _playerRigidbody;
+
+    [SerializeField]
+    private PlayableDirector _playableDirector;
 
     [SerializeField]
     private GameObject _fireEffect1;
@@ -45,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void SkillActive()
     {
+        _playableDirector.gameObject.SetActive(true);
+        _playableDirector.Play();
         StartCoroutine(PlayerSkill());
     }
 
@@ -74,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         _fireEffect2.SetActive(false);
         GameManager.instance.IsSkillActive = false;
+        _playableDirector.gameObject.SetActive(false);
     }
 
     public void SetPlayerPosition(string tag)

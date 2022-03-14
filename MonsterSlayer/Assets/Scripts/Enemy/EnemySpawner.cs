@@ -50,12 +50,15 @@ public class EnemySpawner : MonoBehaviour
 
     private void getEnemy()
     {
-        int randomNum = Random.Range(0, 1);
+        int randomNum = Random.Range(0, 2);
 
         switch (randomNum)
         {
             case (int)EnemyType.SkeletonSlave:
                 _enemyPrefab = ObjectPool.GetSkeletonSlave();
+                break;
+            case (int)EnemyType.Boom:
+                _enemyPrefab = ObjectPool.GetBoom();
                 break;
         }
     }

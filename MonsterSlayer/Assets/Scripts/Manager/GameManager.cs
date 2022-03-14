@@ -51,6 +51,10 @@ public class GameManager : MonoBehaviour
                     _score += 100;
                     _skillGauge += 10;
                     break;
+                case EnemyType.Boom:
+                    _score -= 100;
+                    _skillGauge -= 10;
+                    break;
             }
 
             UIManager.instance.SetScoreText(_score);

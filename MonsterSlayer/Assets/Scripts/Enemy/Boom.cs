@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Boom : Enemy
 {
+    [SerializeField]
+    private GameObject _boomEffect;
+
+    private void OnEnable()
+    {
+        _boomEffect.SetActive(false);
+    }
     public override void EnemyMove()
     {
         Vector3 moveVec = new Vector3(-EnemySpeed * Time.deltaTime, 0, 0);
@@ -14,6 +21,7 @@ public class Boom : Enemy
     {
         IsDead = true;
         GameManager.instance.AddScore(EnemyType.Boom);
+        _boomEffect.SetActive(true);
         StartCoroutine(DestroyEnemy());
     }
 
@@ -31,7 +39,7 @@ public class Boom : Enemy
 
     public override IEnumerator DestroyEnemy()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
 
         ObjectPool.ReturnBoom(this);
     }

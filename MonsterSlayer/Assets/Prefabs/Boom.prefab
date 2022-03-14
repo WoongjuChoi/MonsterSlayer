@@ -9930,6 +9930,7 @@ MonoBehaviour:
   EnemyAnimator: {fileID: 2425690362960362607}
   IsDead: 0
   EnemySpeed: 4
+  _boomEffect: {fileID: 2940376645209362305}
 --- !u!54 &793093103191802034
 Rigidbody:
   m_ObjectHideFlags: 0

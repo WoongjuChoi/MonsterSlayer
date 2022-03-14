@@ -19,10 +19,12 @@ public class PlayerMovement : MonoBehaviour
 
     private IWeapon _curWeapon;
     private bool _isDead;
+    private bool _isStun;
 
     void Awake()
     {
         _isDead = false;
+        _isStun = false;
         _playerAnimator = GetComponent<Animator>();
         _playerRigidbody = GetComponent<Rigidbody>();
         _curWeapon = GetComponentInChildren<IWeapon>();
@@ -33,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
         if (false == _isDead && GameManager.instance.IsGameOver)
         {
             PlayerDie();
+        }
+
+        if (false == _isStun && GameManager.instance.IsStun)
+        {
+            StartCoroutine(playerStun());
         }
     }
 
@@ -81,6 +88,16 @@ public class PlayerMovement : MonoBehaviour
         _fireEffect2.SetActive(false);
         GameManager.instance.IsSkillActive = false;
         _SkillCam.gameObject.SetActive(false);
+    }
+
+    private IEnumerator playerStun()
+    {
+        _isStun = true;
+        _playerAnimator.SetTrigger(AnimParameter.STUN);
+        yield return new WaitForSeconds(1.8f);
+
+        _isStun = false;
+        GameManager.instance.IsStun = false;
     }
 
     public void SetPlayerPosition(string tag)

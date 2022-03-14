@@ -21,7 +21,7 @@ public class NormalSword : MonoBehaviour, IWeapon
     {
         _hitbox.enabled = true;
 
-        while (false == playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(AnimParameter.ATTACK))
+        while (false == playerAnimator.GetCurrentAnimatorStateInfo(0).IsName(AnimParameter.ATTACK) && false == GameManager.instance.IsStun)
         {
             yield return null;
         }

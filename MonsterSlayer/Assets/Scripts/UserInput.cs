@@ -17,7 +17,7 @@ public class UserInput : MonoBehaviour
 
     void Update()
     {
-        if (false == GameManager.instance.IsGameOver)
+        if (false == GameManager.instance.IsGameOver && GameManager.instance.IsStun == false)
         {
             if (Input.GetMouseButtonDown(0) && IsButtonClicked())
             {

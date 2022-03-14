@@ -10,6 +10,7 @@ public class Boom : Enemy
     private void OnEnable()
     {
         _boomEffect.SetActive(false);
+        IsDead = false;
     }
     public override void EnemyMove()
     {
@@ -42,5 +43,22 @@ public class Boom : Enemy
         yield return new WaitForSeconds(1f);
 
         ObjectPool.ReturnBoom(this);
+    }
+
+    public new void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == TagNames.WEAPON && IsDead == false)
+        {
+            GameManager.instance.IsStun = true;
+            EnemyDie();
+        }
+        else if (other.tag == TagNames.SKILL && IsDead == false)
+        {
+            EnemyDie();
+        }
+        else if (other.tag == TagNames.DEADZONE && IsDead == false)
+        {
+            StartCoroutine(EnemyWin());
+        }
     }
 }

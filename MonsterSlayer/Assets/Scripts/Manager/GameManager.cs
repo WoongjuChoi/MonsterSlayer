@@ -34,11 +34,13 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver { get; private set; }
     public bool IsSkillActive { get; set; }
+    public bool IsStun { get; set; }
 
     private void Awake()
     {
         IsSkillActive = false;
         IsGameOver = false;
+        IsStun = false;
     }
 
     public void AddScore(EnemyType type)

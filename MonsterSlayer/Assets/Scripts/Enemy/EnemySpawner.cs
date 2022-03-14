@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     private float _minSpawnRate = 1f;
-    private float _maxSpawnRate = 4f;
+    private float _maxSpawnRate = 2f;
     private float _spawnRate;
     private float _afterSpawnTime;
 

@@ -3332,7 +3332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 3
-  _skillgaugeCapacity: 10
+  _skillgaugeCapacity: 100
   _dieCam: {fileID: 1468478561}
 --- !u!1 &1658560911
 GameObject:
@@ -3559,7 +3559,7 @@ GameObject:
   - component: {fileID: 1750677751}
   m_Layer: 0
   m_Name: FireEffect2
-  m_TagString: Weapon
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

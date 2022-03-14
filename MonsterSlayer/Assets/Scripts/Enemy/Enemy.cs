@@ -43,7 +43,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == TagNames.WEAPON && IsDead == false)
+        if ((other.tag == TagNames.WEAPON || other.tag == TagNames.SKILL) && IsDead == false)
         {
             EnemyDie();
         }

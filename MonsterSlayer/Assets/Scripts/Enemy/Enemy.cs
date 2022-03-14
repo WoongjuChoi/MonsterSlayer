@@ -8,10 +8,15 @@ public abstract class Enemy : MonoBehaviour
     public Animator EnemyAnimator;
     public bool IsDead;
     public float EnemySpeed = 2f;
-    void Awake()
+
+    private void Awake()
     {
         EnemyRigidbody = GetComponent<Rigidbody>();
         EnemyAnimator = GetComponent<Animator>();
+    }
+
+    void OnEnable()
+    {
         IsDead = false;
     }
 

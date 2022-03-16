@@ -19,6 +19,7 @@ public class UserInput : MonoBehaviour
     {
         if (false == GameManager.instance.IsGameOver && GameManager.instance.IsStun == false)
         {
+#if (UNITY_EDITOR || UNITY_STANDALONE_WIN)
             if (Input.GetMouseButtonDown(0) && IsButtonClicked())
             {
                 _target.OnButtonDown();
@@ -27,6 +28,22 @@ public class UserInput : MonoBehaviour
             {
                 _target.OnButtonUp();
             }
+#endif
+
+#if UNITY_ANDROID
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                if ((touch.phase == TouchPhase.Began) && IsButtonClicked())
+                {
+                    _target.OnButtonDown();
+                }
+                else if ((touch.phase == TouchPhase.Ended) && _target != null)
+                {
+                    _target.OnButtonUp();
+                }
+            }
+#endif
         }
     }
 

@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     private static GameManager _instance;
 
-    private int _score = 0;
-    private float _skillGauge = 0;
+    private int _score;
+    private float _skillGauge;
 
     [SerializeField]
     private int _hp = 3;
@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        _score = 0;
+        _skillGauge = 0;
         IsSkillActive = false;
         IsGameOver = false;
         IsStun = false;
@@ -55,6 +57,12 @@ public class GameManager : MonoBehaviour
                     break;
                 case EnemyType.Boom:
                     _score -= 100;
+
+                    if (_score < 0)
+                    {
+                        _score = 0;
+                    }
+
                     _skillGauge -= 10;
                     break;
             }

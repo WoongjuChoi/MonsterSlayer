@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public Rigidbody EnemyRigidbody;
-    public Animator EnemyAnimator;
-    public bool IsDead;
-    public float EnemySpeed = 2f;
+    protected Rigidbody EnemyRigidbody;
+    protected Animator EnemyAnimator;
+    protected bool IsDead;
+    protected float EnemySpeed = 4f;
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if ((other.tag == TagNames.WEAPON || other.tag == TagNames.SKILL) && IsDead == false)
         {
@@ -52,8 +52,8 @@ public abstract class Enemy : MonoBehaviour
             StartCoroutine(EnemyWin());
         }
     }
-    public abstract void EnemyMove();
-    public abstract void EnemyDie();
-    public abstract IEnumerator EnemyWin();
-    public abstract IEnumerator DestroyEnemy();
+    protected abstract void EnemyMove();
+    protected abstract void EnemyDie();
+    protected abstract IEnumerator EnemyWin();
+    protected abstract IEnumerator DestroyEnemy();
 }

@@ -3336,7 +3336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 3
-  _skillgaugeCapacity: 100
+  _skillgaugeCapacity: 10
   _dieCam: {fileID: 1468478561}
 --- !u!1 &1658560911
 GameObject:

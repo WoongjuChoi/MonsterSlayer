@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SkeletonSlave : Enemy
 {
-    public override void EnemyMove()
+    protected override void EnemyMove()
     {
         Vector3 moveVec = new Vector3(-EnemySpeed * Time.deltaTime, 0, 0);
         EnemyRigidbody.MovePosition(EnemyRigidbody.position + moveVec);
     }
 
-    public override void EnemyDie()
+    protected override void EnemyDie()
     {
         IsDead = true;
         GameManager.instance.AddScore(EnemyType.SkeletonSlave);
@@ -19,7 +19,7 @@ public class SkeletonSlave : Enemy
         StartCoroutine(DestroyEnemy());
     }
 
-    public override IEnumerator EnemyWin()
+    protected override IEnumerator EnemyWin()
     {
         IsDead = true;
         GameManager.instance.TakeDamage();
@@ -33,7 +33,7 @@ public class SkeletonSlave : Enemy
         }
     }
 
-    public override IEnumerator DestroyEnemy()
+    protected override IEnumerator DestroyEnemy()
     {
         yield return new WaitForSeconds(3f);
 

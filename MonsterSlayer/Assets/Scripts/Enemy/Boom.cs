@@ -12,13 +12,13 @@ public class Boom : Enemy
         _boomEffect.SetActive(false);
         IsDead = false;
     }
-    public override void EnemyMove()
+    protected override void EnemyMove()
     {
         Vector3 moveVec = new Vector3(-EnemySpeed * Time.deltaTime, 0, 0);
         EnemyRigidbody.MovePosition(EnemyRigidbody.position + moveVec);
     }
 
-    public override void EnemyDie()
+    protected override void EnemyDie()
     {
         IsDead = true;
         GameManager.instance.AddScore(EnemyType.Boom);
@@ -26,7 +26,7 @@ public class Boom : Enemy
         StartCoroutine(DestroyEnemy());
     }
 
-    public override IEnumerator EnemyWin()
+    protected override IEnumerator EnemyWin()
     {
         IsDead = true;
 
@@ -38,14 +38,14 @@ public class Boom : Enemy
         }
     }
 
-    public override IEnumerator DestroyEnemy()
+    protected override IEnumerator DestroyEnemy()
     {
         yield return new WaitForSeconds(1f);
 
         ObjectPool.ReturnBoom(this);
     }
 
-    public new void OnTriggerEnter(Collider other)
+    protected new void OnTriggerEnter(Collider other)
     {
         if ((other.tag == TagNames.WEAPON || other.tag == TagNames.PLAYER) && IsDead == false)
         {

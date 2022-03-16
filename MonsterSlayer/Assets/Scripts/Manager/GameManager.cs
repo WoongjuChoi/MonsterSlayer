@@ -64,6 +64,12 @@ public class GameManager : MonoBehaviour
                     }
 
                     _skillGauge -= 10;
+
+                    if (_skillGauge < 0)
+                    {
+                        _skillGauge = 0;
+                    }
+
                     break;
             }
 

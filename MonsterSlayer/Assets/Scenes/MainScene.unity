@@ -2946,6 +2946,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 581188179, guid: a96b63f27d072234bbc3d7818166e4eb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 581188182, guid: a96b63f27d072234bbc3d7818166e4eb, type: 3}
       propertyPath: _SkillCam
       value: 

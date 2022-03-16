@@ -47,7 +47,7 @@ public class Boom : Enemy
 
     public new void OnTriggerEnter(Collider other)
     {
-        if (other.tag == TagNames.WEAPON && IsDead == false)
+        if ((other.tag == TagNames.WEAPON || other.tag == TagNames.PLAYER) && IsDead == false)
         {
             GameManager.instance.IsStun = true;
             EnemyDie();
